@@ -32,10 +32,11 @@ def main():
         data = list(map(int, input().split()))
 
     elif imethod.startswith("F"):
-        filee = input()
-        with open("tests/" + filee, 'r') as faili:
+        filename = input()
+        with open("tests/" + filename, 'r') as faili:
             n = int(faili.readline())
             data = list(map(int, faili.readline().split()))
+
 
 
     assert len(data) == n

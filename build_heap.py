@@ -1,41 +1,53 @@
-def build_heap(nums):
+def build_heap(data, n):
     swaps = []
-    for i in range(len(nums)//2 - 1, -1, -1):
-        left = 2 * i + 1
-        right = 2 * i + 2
-        current = i
-        if left < len(nums) and nums[left] < nums[current]:
-            current = left
-        if right < len(nums) and nums[right] < nums[current]:
-            current = right
-        if current != i:
-            swaps.append((i, current))
-            swaps.append((i, current))
-            nums[i], nums[current] = nums[current], nums[i]
+    
+    for i in range(n // 2, -1, -1):
+        number = i
+        
+        while True:
+            left_branch = 2 * i + 1
+            if left_branch < n and data[left_branch] < data[number]:
+                number = left_branch
+            right_branch = 2 * i + 2
+            
+            if right_branch < n and data[right_branch] < data[number]:
+                number = right_branch
+                
+            if number != i:
+                data[i], data[number] = data[number], data[i]
+                swaps.append((i, number))
+                i = number
+                
+            else:
+                break
+
     return swaps
 
 
 def main():
-    # Let's get some input from the user.
-    text = input()
-
-    if 'I' in text:
+    input_method = input()
+    
+    if input_method.startswith("I"):
         n = int(input())
         data = list(map(int, input().split()))
-
-    if 'F' in text:
+        
+    elif input_method.startswith("F"):
+        print("File path: ")
         file_name = input()
-        with open(file_name, 'r') as file:
-            n = int(file.readline())
-            data = list(map(int, file.readline().split()))
+        file_path = "./tests/"
+        
+        if "a" not in file_name:
+            with open(file_path + file_name, mode = "r") as file:
+                n = int(file.readline())
+                data = list(map(int, file.readline().split()))
+        else:
+            exit()
+    else:
+        exit()
 
-    # Check that the data is valid.
     assert len(data) == n
+    swaps = build_heap(data, n)
 
-    # Sort the data.
-    swaps = build_heap(data)
-
-    # Print the sorted data.
     print(len(swaps))
     for i, j in swaps:
         print(i, j)

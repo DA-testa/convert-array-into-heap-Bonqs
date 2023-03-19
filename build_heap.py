@@ -10,7 +10,7 @@ def build_heap(data, n):
                 num = left
             right = 2 * i + 2
 
-            if right < n and data[right] < data[num]:
+            if right < n and data[right] < data[number]:
                 num = right
 
             if num != i:
@@ -25,18 +25,20 @@ def build_heap(data, n):
 
 
 def main():
-    imode = input().strip()
+    imethod = input()
 
-    if imode == "I":
+    if imethod.startswith("I"):
         n = int(input())
         data = list(map(int, input().split()))
 
-    elif mode == "F":
-        filenam = input()
-        with open("tests/" + filenam, 'r') as faili:
-            n = int(faili.readline())
-            data = list(map(int, faili.readline().split()))
+    elif imethod.startswith("F"):
+        file_name = input()
+        file_path = "./tests/"
 
+        with open(file_path + file_name, mode = "r") as file:
+            n = int(file.readline())
+            data = list(map(int, file.readline().split()))
+        
     else:
         exit()
 

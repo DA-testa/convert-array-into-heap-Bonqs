@@ -17,14 +17,14 @@ def build_heap(nums):
 
 def main():
     # Let's get some input from the user.
-    text = input("What would you like to do? (I)nput manually or (F)rom file? ")
+    text = input()
 
     if 'I' in text:
-        n = int(input("How many numbers are you sorting? "))
-        data = list(map(int, input("Enter the numbers separated by spaces: ").split()))
+        n = int(input())
+        data = list(map(int, input().split()))
 
     if 'F' in text:
-        file_name = input("Enter the file name (including extension): ")
+        file_name = input()
         with open(file_name, 'r') as file:
             n = int(file.readline())
             data = list(map(int, file.readline().split()))

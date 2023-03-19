@@ -32,18 +32,11 @@ def main():
         data = list(map(int, input().split()))
 
     elif imethod.startswith("F"):
-        print("File path: ")
-        file_name = input()
-        file_path = "./tests/"
+        filee = input()
+        with open("tests/" + filee, 'r') as faili:
+            n = int(faili.readline())
+            data = list(map(int, faili.readline().split()))
 
-        if "a" not in file_name:
-            with open(file_path + file_name, mode = "r") as file:
-                n = int(file.readline())
-                data = list(map(int, file.readline().split()))
-        else:
-            exit()
-    else:
-        exit()
 
     assert len(data) == n
     swaps = build_heap(data, n)

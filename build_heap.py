@@ -10,7 +10,7 @@ def build_heap(data, n):
                 num = left
             right = 2 * i + 2
 
-            if right < n and data[right] < data[number]:
+            if right < n and data[right] < data[num]:
                 num = right
 
             if num != i:
@@ -32,6 +32,7 @@ def main():
         data = list(map(int, input().split()))
 
     elif imethod.startswith("F"):
+        print("File path: ")
         file_name = input()
         file_path = "./tests/"
 

@@ -1,23 +1,23 @@
 def build_heap(data, n):
     swaps = []
-    
+
     for i in range(n // 2, -1, -1):
-        number = i
-        
+        num = i
+
         while True:
-            left_branch = 2 * i + 1
-            if left_branch < n and data[left_branch] < data[number]:
-                number = left_branch
-            right_branch = 2 * i + 2
-            
-            if right_branch < n and data[right_branch] < data[number]:
-                number = right_branch
-                
-            if number != i:
-                data[i], data[number] = data[number], data[i]
-                swaps.append((i, number))
-                i = number
-                
+            left = 2 * i + 1
+            if left < n and data[left] < data[num]:
+                num = left
+            right = 2 * i + 2
+
+            if right < n and data[right] < data[num]:
+                num = right
+
+            if num != i:
+                data[i], data[num] = data[num], data[i]
+                swaps.append((i, num))
+                i = num
+
             else:
                 break
 
@@ -25,23 +25,18 @@ def build_heap(data, n):
 
 
 def main():
-    input_method = input()
-    
-    if input_method.startswith("I"):
+    imode = input().strip()
+
+    if imode == "I":
         n = int(input())
         data = list(map(int, input().split()))
-        
-    elif input_method.startswith("F"):
-        print("File path: ")
-        file_name = input()
-        file_path = "./tests/"
-        
-        if "a" not in file_name:
-            with open(file_path + file_name, mode = "r") as file:
-                n = int(file.readline())
-                data = list(map(int, file.readline().split()))
-        else:
-            exit()
+
+    elif mode == "F":
+        filenam = input()
+        with open("tests/" + filenam, 'r') as faili:
+            n = int(faili.readline())
+            data = list(map(int, faili.readline().split()))
+
     else:
         exit()
 

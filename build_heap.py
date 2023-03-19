@@ -35,10 +35,12 @@ def main():
         file_name = input()
         file_path = "./tests/"
 
-        with open(file_path + file_name, mode = "r") as file:
-            n = int(file.readline())
-            data = list(map(int, file.readline().split()))
-        
+        if "a" not in file_name:
+            with open(file_path + file_name, mode = "r") as file:
+                n = int(file.readline())
+                data = list(map(int, file.readline().split()))
+        else:
+            exit()
     else:
         exit()
 

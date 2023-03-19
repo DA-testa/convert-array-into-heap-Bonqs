@@ -1,38 +1,41 @@
-# python3
-
-
-def build_heap(data):
+def build_heap(nums):
     swaps = []
-    # TODO: Creat heap and heap sort
-    # try to achieve  O(n) and not O(n2)
-
-
+    for i in range(len(nums)//2 - 1, -1, -1):
+        left = 2 * i + 1
+        right = 2 * i + 2
+        current = i
+        if left < len(nums) and nums[left] < nums[current]:
+            current = left
+        if right < len(nums) and nums[right] < nums[current]:
+            current = right
+        if current != i:
+            swaps.append((i, current))
+            swaps.append((i, current))
+            nums[i], nums[current] = nums[current], nums[i]
     return swaps
 
 
 def main():
-    
-    # TODO : add input and corresponding checks
-    # add another input for I or F 
-    # first two tests are from keyboard, third test is from a file
+    # Let's get some input from the user.
+    text = input("What would you like to do? (I)nput manually or (F)rom file? ")
 
+    if 'I' in text:
+        n = int(input("How many numbers are you sorting? "))
+        data = list(map(int, input("Enter the numbers separated by spaces: ").split()))
 
-    # input from keyboard
-    n = int(input())
-    data = list(map(int, input().split()))
+    if 'F' in text:
+        file_name = input("Enter the file name (including extension): ")
+        with open(file_name, 'r') as file:
+            n = int(file.readline())
+            data = list(map(int, file.readline().split()))
 
-    # checks if lenght of data is the same as the said lenght
+    # Check that the data is valid.
     assert len(data) == n
 
-    # calls function to assess the data 
-    # and give back all swaps
+    # Sort the data.
     swaps = build_heap(data)
 
-    # TODO: output how many swaps were made, 
-    # this number should be less than 4n (less than 4*len(data))
-
-
-    # output all swaps
+    # Print the sorted data.
     print(len(swaps))
     for i, j in swaps:
         print(i, j)
